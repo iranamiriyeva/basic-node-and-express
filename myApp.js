@@ -74,6 +74,9 @@ app.use(bodyParser.json())
 //     res.json({name: `${req.query.first} ${req.query.last}`})
 // })
 
-
+//Solution12: Get Data from POST Requests
+app.post('/name', (req, res) => {
+    res.json({name: `${req.body.first} ${req.body.last}`})
+})
 
  module.exports = app

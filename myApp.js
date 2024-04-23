@@ -1,6 +1,7 @@
 let express = require('express')
 let app = express()
 const path = require('path')
+require('dotenv').config()
 
 //Solution2: Start a Working Express Server
 // app.get("/", (req, res) => {
@@ -20,8 +21,18 @@ const path = require('path')
 // })
 
 //Solution5: Serve JSON on a Specific Route
+// app.get('/json', (req, res) => {
+//     res.json({"message": "Hello json"})
+// })
+
+//Solution6: Use the .env File
+let message
 app.get('/json', (req, res) => {
-    res.json({"message": "Hello json"})
+    process.env.MESSAGE_STYLE === "uppercase" ? 
+        message = "Hello json".toUpperCase() : 
+        message = "Hello json"
+    res.json({"message": message})
 })
+
 
  module.exports = app

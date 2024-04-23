@@ -35,10 +35,29 @@ require('dotenv').config()
 // })
 
 //Solution7: Implement a Root-Level Request Logger Middleware
-app.use(middleware = (req, res, next) => {
-    const data = req.method + " " + req.path + " - " + req.ip
-    console.log(data)
+// app.use(middleware = (req, res, next) => {
+//     const data = req.method + " " + req.path + " - " + req.ip
+//     console.log(data)
+//     next()
+// })
+
+//Solution8: Chain Middleware to Create a Time Server
+app.get('/now', (req, res, next) => {
+    req.time = new Date().toString()
     next()
+}, (req, res) => {
+    res.send({time: req.time})
 })
+
+//Option for using middleware in multiple routes
+const middleware = (req, res, next) => {
+    req.time = new Date().toString()
+    next()
+  }
+  
+  app.get('/now', middleware, (req, res) => {
+    res.send({time: req.time})
+  })
+
 
  module.exports = app

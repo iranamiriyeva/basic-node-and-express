@@ -14,44 +14,14 @@ const path = require('path')
 // })
 
 //Solution4: Serve Static Assets
-app.use('/public', express.static(path.join(__dirname, 'public')))
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, 'views', 'index.html'))
+// app.use('/public', express.static(path.join(__dirname, 'public')))
+// app.get('/', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'views', 'index.html'))
+// })
+
+//Solution5: Serve JSON on a Specific Route
+app.get('/json', (req, res) => {
+    res.json({"message": "Hello json"})
 })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- module.exports = app;
+ module.exports = app

@@ -26,13 +26,19 @@ require('dotenv').config()
 // })
 
 //Solution6: Use the .env File
-let message
-app.get('/json', (req, res) => {
-    process.env.MESSAGE_STYLE === "uppercase" ? 
-        message = "Hello json".toUpperCase() : 
-        message = "Hello json"
-    res.json({"message": message})
-})
+// let message
+// app.get('/json', (req, res) => {
+//     process.env.MESSAGE_STYLE === "uppercase" ? 
+//         message = "Hello json".toUpperCase() : 
+//         message = "Hello json"
+//     res.json({"message": message})
+// })
 
+//Solution7: Implement a Root-Level Request Logger Middleware
+app.use(middleware = (req, res, next) => {
+    const data = req.method + " " + req.path + " - " + req.ip
+    console.log(data)
+    next()
+})
 
  module.exports = app

@@ -42,22 +42,27 @@ require('dotenv').config()
 // })
 
 //Solution8: Chain Middleware to Create a Time Server
-app.get('/now', (req, res, next) => {
-    req.time = new Date().toString()
-    next()
-}, (req, res) => {
-    res.send({time: req.time})
-})
+// app.get('/now', (req, res, next) => {
+//     req.time = new Date().toString()
+//     next()
+// }, (req, res) => {
+//     res.send({time: req.time})
+// })
 
-//Option for using middleware in multiple routes
-const middleware = (req, res, next) => {
-    req.time = new Date().toString()
-    next()
-  }
+// //Option for using middleware in multiple routes
+// const middleware = (req, res, next) => {
+//     req.time = new Date().toString()
+//     next()
+//   }
   
-  app.get('/now', middleware, (req, res) => {
-    res.send({time: req.time})
-  })
+//   app.get('/now', middleware, (req, res) => {
+//     res.send({time: req.time})
+//   })
+
+//Solution9: Get Route Parameter Input from the Client
+app.get('/:word/echo', (req, res) => {
+    res.send({echo: req.params.word})
+})
 
 
  module.exports = app

@@ -3,6 +3,11 @@ let app = express()
 const path = require('path')
 require('dotenv').config()
 
+//Solution11: Use body-parser to Parse POST Requests
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
+
 //Solution2: Start a Working Express Server
 // app.get("/", (req, res) => {
 //     res.send("Hello Express")
@@ -65,9 +70,10 @@ require('dotenv').config()
 // })
 
 //Solution10: Get Query Parameter Input from the Client
-app.get('/name', (req, res) => {
-    res.json({name: `${req.query.first} ${req.query.last}`})
-})
+// app.get('/name', (req, res) => {
+//     res.json({name: `${req.query.first} ${req.query.last}`})
+// })
+
 
 
  module.exports = app

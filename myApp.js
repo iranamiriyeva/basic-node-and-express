@@ -60,8 +60,13 @@ require('dotenv').config()
 //   })
 
 //Solution9: Get Route Parameter Input from the Client
-app.get('/:word/echo', (req, res) => {
-    res.send({echo: req.params.word})
+// app.get('/:word/echo', (req, res) => {
+//     res.send({echo: req.params.word})
+// })
+
+//Solution10: Get Query Parameter Input from the Client
+app.get('/name', (req, res) => {
+    res.json({name: `${req.query.first} ${req.query.last}`})
 })
 
 
